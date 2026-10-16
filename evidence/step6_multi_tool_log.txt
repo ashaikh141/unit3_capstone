@@ -1,0 +1,100 @@
+[TOKENS] classification       in=   289  out=    4  cost=$0.001020  (0.73s)
+[TOKENS] sql_generation       in=   292  out=   38  cost=$0.001591  (0.76s)
+[TOKENS] sql_interpretation   in=   147  out=   72  cost=$0.001673  (1.72s)
+[TOKENS] retrieval_answer     in=   742  out=  346  cost=$0.008158  (3.33s)
+[TOKENS] synthesis            in=   690  out=  213  cost=$0.005791  (1.99s)
+
+=== FINAL STATE ===
+{
+  "question": "How many invoices are currently overdue, and what does our invoicing policy say we should do about overdue invoices?",
+  "route": "both",
+  "sql_result": {
+    "success": true,
+    "answer": "There are currently **3 overdue invoices** in the system. However, your question about the invoicing policy falls outside the scope of this data \u2014 the query only retrieves invoice counts, and policy information was not included in the results. You would need to consult your internal policy documentation for guidance on handling overdue invoices.",
+    "sources": [
+      "SELECT COUNT(*) AS overdue_invoice_count\nFROM invoices\nWHERE status <> 'paid'\nAND due_date < CURRENT_DATE;"
+    ],
+    "metadata": {
+      "tool": "sql_agent",
+      "sql_validation": "PASSED",
+      "sql": "SELECT COUNT(*) AS overdue_invoice_count\nFROM invoices\nWHERE status <> 'paid'\nAND due_date < CURRENT_DATE;",
+      "validation_reason": "Single read-only SELECT",
+      "row_count": 1,
+      "latency_s": 2.54
+    }
+  },
+  "retrieval_result": {
+    "success": true,
+    "answer": "Regarding the **number of currently overdue invoices**, I cannot answer that \u2014 the document excerpts provided contain only policy information and no actual invoice data. NOT_FOUND for the current count.\n\nHowever, here is what the invoicing policy states about **handling overdue invoices**:\n\n---\n\n### Overdue Escalation Process [invoice_and_payment_policy.pdf]\n\nOverdue invoices are escalated in **three stages**:\n\n1. **1\u201330 days overdue:** The **Account Manager** sends a written reminder to the client's finance contact. [invoice_and_payment_policy.pdf]\n\n2. **31\u201360 days overdue:** The **Engagement Manager** calls the client sponsor and agrees on a payment date. [invoice_and_payment_policy.pdf]\n\n3. **After 60 days overdue:** The matter is escalated to a **Partner**, who may place the related project **on hold** until payment is received. [invoice_and_payment_policy.pdf]\n\n### Additional Rules [invoice_and_payment_policy.pdf]\n\n- The firm **will not start new projects** for a client with any invoice more than 60 days overdue, unless a Partner approves an exception **in writing**. [invoice_and_payment_policy.pdf]\n- If an invoice is **disputed**, the account manager logs it within two business days, and the 60-day Partner escalation is **paused** during investigation, though the invoice remains overdue. [invoice_and_payment_policy.pdf]",
+    "sources": [
+      "invoice_and_payment_policy.pdf"
+    ],
+    "metadata": {
+      "tool": "retrieval_agent",
+      "chunk_scores": [
+        {
+          "doc": "invoice_and_payment_policy.pdf",
+          "score": 0.8725
+        },
+        {
+          "doc": "invoice_and_payment_policy.pdf",
+          "score": 0.7638
+        },
+        {
+          "doc": "sample-documents/retail-supply-chain-case-study.pdf",
+          "score": 0.6635
+        },
+        {
+          "doc": "expense_and_travel_policy.pdf",
+          "score": 0.6601
+        }
+      ],
+      "grounded": true,
+      "cited_docs": [
+        "invoice_and_payment_policy.pdf"
+      ],
+      "latency_s": 3.8
+    }
+  },
+  "final_answer": "There are currently **3 overdue invoices** in the system [SQL Agent]. According to our invoicing policy, overdue invoices follow a three-stage escalation process: for invoices **1\u201330 days overdue**, the Account Manager sends a written reminder to the client's finance contact; for **31\u201360 days overdue**, the Engagement Manager calls the client sponsor to agree on a payment date; and **after 60 days**, the matter escalates to a Partner, who may place the related project on hold until payment is received [Retrieval Agent: invoice_and_payment_policy.pdf]. Additionally, the firm will not start new projects for a client with any invoice more than 60 days overdue unless a Partner approves an exception in writing, and disputed invoices must be logged by the account manager within two business days, pausing the 60-day escalation clock during investigation [Retrieval Agent: invoice_and_payment_policy.pdf].",
+  "token_usage": {
+    "total": {
+      "calls": 5,
+      "input_tokens": 2160,
+      "output_tokens": 673,
+      "cost_usd": 0.018233
+    },
+    "by_component": {
+      "classification": {
+        "calls": 1,
+        "input_tokens": 289,
+        "output_tokens": 4,
+        "cost_usd": 0.00102
+      },
+      "sql_generation": {
+        "calls": 1,
+        "input_tokens": 292,
+        "output_tokens": 38,
+        "cost_usd": 0.001591
+      },
+      "sql_interpretation": {
+        "calls": 1,
+        "input_tokens": 147,
+        "output_tokens": 72,
+        "cost_usd": 0.001673
+      },
+      "retrieval_answer": {
+        "calls": 1,
+        "input_tokens": 742,
+        "output_tokens": 346,
+        "cost_usd": 0.008158
+      },
+      "synthesis": {
+        "calls": 1,
+        "input_tokens": 690,
+        "output_tokens": 213,
+        "cost_usd": 0.005791
+      }
+    }
+  }
+}
