@@ -1,0 +1,22 @@
+=== Step 1: Foundation check ===
+
+RDS (one-line query per table):
+  SELECT COUNT(*) FROM clients      ->     7 rows   PASS
+  SELECT COUNT(*) FROM projects     ->    10 rows   PASS
+  SELECT COUNT(*) FROM consultants  ->    10 rows   PASS
+  SELECT COUNT(*) FROM invoices     ->    12 rows   PASS
+
+OpenSearch:
+  document count in index 'documents' -> 32   PASS
+
+OpenSearch index fields (set VECTOR_FIELD / TEXT_FIELD / SOURCE_FIELD in .env to match):
+  chunk_number: integer
+  content: text
+  embedding: knn_vector
+  source: keyword
+
+Database schema (use this to write good test questions):
+TABLE clients: id (integer), name (text), industry (text), region (text), contract_value (numeric), created_date (date)
+TABLE consultants: id (integer), name (text), grade (text), specialisation (text), project_id (integer), billable_hours (numeric)
+TABLE invoices: id (integer), project_id (integer), amount (numeric), status (text), due_date (date), paid_date (date)
+TABLE projects: id (integer), client_id (integer), name (text), status (text), start_date (date), end_date (date), budget (numeric)

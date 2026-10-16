@@ -1,3 +1,10 @@
 .env
 .venv
 model.onnx
+lambda_env.json
+venv/
+.venv_clean/
+__pycache__/
+*.pyc
+logs/
+*.zip
