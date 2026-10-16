@@ -1,0 +1,32 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.7.0 -- /home/du_356070-1790253990/bootcamp/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/du_356070-1790253990/bootcamp/deployment
+configfile: pytest.ini
+testpaths: tests
+plugins: langsmith-0.14.9, anyio-4.15.1
+collecting ... collected 21 items
+
+tests/test_orchestrator.py::test_sql_only_route PASSED                   [  4%]
+tests/test_orchestrator.py::test_retrieval_only_route PASSED             [  9%]
+tests/test_orchestrator.py::test_both_route_runs_both_tools_then_synthesizes PASSED [ 14%]
+tests/test_orchestrator.py::test_unanswerable_route_declines_without_tools PASSED [ 19%]
+tests/test_orchestrator.py::test_unknown_router_reply_defaults_to_both PASSED [ 23%]
+tests/test_orchestrator.py::test_history_is_capped PASSED                [ 28%]
+tests/test_tools.py::test_sql_tool_blocks_unsafe_sql_before_execution PASSED [ 33%]
+tests/test_tools.py::test_sql_tool_runs_valid_sql PASSED                 [ 38%]
+tests/test_tools.py::test_retrieval_tool_shape_and_grounding PASSED      [ 42%]
+tests/test_validator.py::test_case1_valid_select_is_allowed PASSED       [ 47%]
+tests/test_validator.py::test_case2_destructive_statements_are_blocked PASSED [ 52%]
+tests/test_validator.py::test_case3_column_containing_blocked_word_is_allowed PASSED [ 57%]
+tests/test_validator.py::test_case4_stacked_query_with_blocked_keyword_is_blocked PASSED [ 61%]
+tests/test_validator.py::test_case5_stacked_query_of_two_selects_is_blocked PASSED [ 66%]
+tests/test_validator.py::test_single_trailing_semicolon_is_allowed PASSED [ 71%]
+tests/test_validator.py::test_lowercase_destructive_is_blocked PASSED    [ 76%]
+tests/test_validator.py::test_blocked_word_inside_string_literal_is_allowed PASSED [ 80%]
+tests/test_validator.py::test_semicolon_hidden_by_string_trick_is_blocked PASSED [ 85%]
+tests/test_validator.py::test_cte_with_delete_is_blocked PASSED          [ 90%]
+tests/test_validator.py::test_select_into_is_blocked PASSED              [ 95%]
+tests/test_validator.py::test_empty_query_is_blocked PASSED              [100%]
+
+============================== 21 passed in 0.54s ==============================
