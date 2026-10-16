@@ -1,0 +1,23 @@
+=== Step 2: Standardized tool interface ===
+
+[TOKENS] sql_generation       in=   272  out=   10  cost=$0.001063  (0.78s)
+[TOKENS] sql_interpretation   in=    94  out=   13  cost=$0.000525  (0.76s)
+run_sql_agent("How many projects are there?")
+  top-level keys: ['answer', 'metadata', 'sources', 'success']   PASS
+  success:  True
+  answer:   There are **10 projects** in total.
+  sources:  ['SELECT COUNT(*) FROM projects;']
+  metadata: {"tool": "sql_agent", "sql_validation": "PASSED", "sql": "SELECT COUNT(*) FROM projects;", "validation_reason": "Single read-only SELECT", "row_count": 1, "latency_s": 1.64}
+
+[TOKENS] retrieval_answer     in=   953  out=  307  cost=$0.008210  (2.56s)
+run_retrieval_agent("What is our onboarding process?")
+  top-level keys: ['answer', 'metadata', 'sources', 'success']   PASS
+  success:  True
+  answer:   Based on the onboarding documentation, here is the onboarding process:
+
+## Before Day One
+- People Operations sends a **welcome pack** one week before the start date [onboarding_process.pdf]
+- IT ships a laptop and creates email, timesheet, and proje
+  sources:  ['onboarding_process.pdf']
+  metadata: {"tool": "retrieval_agent", "chunk_scores": [{"doc": "onboarding_process.pdf", "score": 0.8099}, {"doc": "sample-documents/cloud-migration-playbook.pdf", "score": 0.6807}, {"doc": "project_delivery_methodology.pdf", "score": 0.6761}, {"doc": "sample-documents/q2-2026-client-report.pdf", "score": 0.6749}], "grounded": true, "cited_docs": ["onboarding_process.pdf"], "latency_s": 5.35}
+
