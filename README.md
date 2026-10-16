@@ -161,10 +161,10 @@ Full answers: [step7_test_suite.md](evidence/step7_test_suite.md)
 
 ## Reflection
 
-Hardest question: Q6 (“How many consultants do we have, and what does our onboarding process require them to complete?”) tested the limits of my orchestrator the most.
-What went wrong: The router correctly sent it to both agents, but the SQL agent received the whole question, decided it couldn’t answer the onboarding part, and returned CANNOT_ANSWER, so the consultant count was lost.
-Type of failure: Not a validation or routing problem. It was a decomposition problem in how work was handed to each agent.
-Fix: I told each agent to answer only the part of the question it can handle.
-Second issue: Q7 (the delete request) was routed to “none,” so nothing ran, but that meant the router was acting as my safety layer instead of the validator.
-Fix: I changed the router to send all data-change requests to SQL so the validator is what blocks them.
-What it taught me: Multi-agent systems are more fragile than a single well-scoped agent, because every handoff between the router, the agents, and the synthesis step is a place where one component can make a wrong assumption about another, and those failures are often silent rather than obvious errors.
+- **Hardest question:** Q6 (“How many consultants do we have, and what does our onboarding process require them to complete?”) tested the limits of my orchestrator the most.
+- **What went wrong:** The router correctly sent it to both agents, but the SQL agent received the whole question, decided it couldn’t answer the onboarding part, and returned CANNOT_ANSWER, so the consultant count was lost.
+- **Type of failure:** Not a validation or routing problem. It was a decomposition problem in how work was handed to each agent.
+- **Fix:** I told each agent to answer only the part of the question it can handle.
+- **Second issue:** Q7 (the delete request) was routed to “none,” so nothing ran, but that meant the router was acting as my safety layer instead of the validator.
+- **Fix:** I changed the router to send all data-change requests to SQL so the validator is what blocks them.
+- **What it taught me:** Multi-agent systems are more fragile than a single well-scoped agent, because every handoff between the router, the agents, and the synthesis step is a place where one component can make a wrong assumption about another, and those failures are often silent rather than obvious errors.
