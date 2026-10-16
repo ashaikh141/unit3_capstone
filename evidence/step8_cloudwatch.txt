@@ -1,11 +1,11 @@
-2026-10-16T17:50:26.717000+00:00 2026/10/16/[$LATEST]9f2912729f224c54867400455935ccbf INIT_START Runtime Version: python:3.12.mainlinev2.v43	Runtime Version ARN: arn:aws:lambda:us-east-1::runtime:36aeb19f3326e129d9f096dea0a3c6a9ca8dce2610e62d2b2060747602d863ae
-2026-10-16T17:50:29.550000+00:00 2026/10/16/[$LATEST]9f2912729f224c54867400455935ccbf START RequestId: 2622e32c-46ee-4580-9967-1b01b1683e3d Version: $LATEST
-2026-10-16T17:50:30.323000+00:00 2026/10/16/[$LATEST]9f2912729f224c54867400455935ccbf [TOKENS] classification       in=   289  out=    4  cost=$0.001020  (0.76s)
-2026-10-16T17:50:31.433000+00:00 2026/10/16/[$LATEST]9f2912729f224c54867400455935ccbf [TOKENS] sql_generation       in=   292  out=   38  cost=$0.001591  (0.92s)
-2026-10-16T17:50:33.013000+00:00 2026/10/16/[$LATEST]9f2912729f224c54867400455935ccbf [TOKENS] sql_interpretation   in=   147  out=   76  cost=$0.001739  (1.56s)
-2026-10-16T17:50:33.964000+00:00 2026/10/16/[$LATEST]9f2912729f224c54867400455935ccbf [0;93m2026-10-16 17:50:33.963260248 [W:onnxruntime:Default, telemetry_1ds.cc:600 operator()] Failed to persist telemetry device ID; using an in-memory identifier[m
-2026-10-16T17:50:40.640000+00:00 2026/10/16/[$LATEST]9f2912729f224c54867400455935ccbf [TOKENS] retrieval_answer     in=   742  out=  346  cost=$0.008158  (3.43s)
-2026-10-16T17:50:42.760000+00:00 2026/10/16/[$LATEST]9f2912729f224c54867400455935ccbf [TOKENS] synthesis            in=   694  out=  213  cost=$0.005805  (2.12s)
-2026-10-16T17:50:42.760000+00:00 2026/10/16/[$LATEST]9f2912729f224c54867400455935ccbf {"event": "orchestrator_complete", "route": "both", "sql_validation": "PASSED", "token_usage_total": {"calls": 5, "input_tokens": 2164, "output_tokens": 677, "cost_usd": 0.018313}}
-2026-10-16T17:50:42.763000+00:00 2026/10/16/[$LATEST]9f2912729f224c54867400455935ccbf END RequestId: 2622e32c-46ee-4580-9967-1b01b1683e3d
-2026-10-16T17:50:42.763000+00:00 2026/10/16/[$LATEST]9f2912729f224c54867400455935ccbf REPORT RequestId: 2622e32c-46ee-4580-9967-1b01b1683e3d	Duration: 13212.17 ms	Billed Duration: 16042 ms	Memory Size: 1024 MB	Max Memory Used: 447 MB	Init Duration: 2829.60 ms
+2026-10-16T18:05:25.251000+00:00 2026/10/16/[$LATEST]af0a721973334150950b124c84144a41 INIT_START Runtime Version: python:3.12.mainlinev2.v43	Runtime Version ARN: arn:aws:lambda:us-east-1::runtime:36aeb19f3326e129d9f096dea0a3c6a9ca8dce2610e62d2b2060747602d863ae
+2026-10-16T18:05:28.222000+00:00 2026/10/16/[$LATEST]af0a721973334150950b124c84144a41 START RequestId: 91fbb45a-7589-4e66-8410-b89eb14d2d9b Version: $LATEST
+2026-10-16T18:05:28.970000+00:00 2026/10/16/[$LATEST]af0a721973334150950b124c84144a41 [TOKENS] classification       in=   328  out=    4  cost=$0.001148  (0.73s)
+2026-10-16T18:05:29.962000+00:00 2026/10/16/[$LATEST]af0a721973334150950b124c84144a41 [TOKENS] sql_generation       in=   322  out=   38  cost=$0.001690  (0.8s)
+2026-10-16T18:05:31.527000+00:00 2026/10/16/[$LATEST]af0a721973334150950b124c84144a41 [TOKENS] sql_interpretation   in=   147  out=   76  cost=$0.001739  (1.54s)
+2026-10-16T18:05:32.525000+00:00 2026/10/16/[$LATEST]af0a721973334150950b124c84144a41 [0;93m2026-10-16 18:05:32.523879989 [W:onnxruntime:Default, telemetry_1ds.cc:600 operator()] Failed to persist telemetry device ID; using an in-memory identifier[m
+2026-10-16T18:05:38.487000+00:00 2026/10/16/[$LATEST]af0a721973334150950b124c84144a41 [TOKENS] retrieval_answer     in=   781  out=  278  cost=$0.007164  (2.38s)
+2026-10-16T18:05:40.339000+00:00 2026/10/16/[$LATEST]af0a721973334150950b124c84144a41 [TOKENS] synthesis            in=   620  out=  196  cost=$0.005280  (1.85s)
+2026-10-16T18:05:40.339000+00:00 2026/10/16/[$LATEST]af0a721973334150950b124c84144a41 {"event": "orchestrator_complete", "route": "both", "sql_validation": "PASSED", "token_usage_total": {"calls": 5, "input_tokens": 2198, "output_tokens": 592, "cost_usd": 0.017021}}
+2026-10-16T18:05:40.342000+00:00 2026/10/16/[$LATEST]af0a721973334150950b124c84144a41 END RequestId: 91fbb45a-7589-4e66-8410-b89eb14d2d9b
+2026-10-16T18:05:40.342000+00:00 2026/10/16/[$LATEST]af0a721973334150950b124c84144a41 REPORT RequestId: 91fbb45a-7589-4e66-8410-b89eb14d2d9b	Duration: 12119.10 ms	Billed Duration: 15087 ms	Memory Size: 1024 MB	Max Memory Used: 447 MB	Init Duration: 2967.51 ms
