@@ -157,4 +157,14 @@ Full answers: [step7_test_suite.md](evidence/step7_test_suite.md)
 |---|---|---|
 | Follow-ups resolve correctly | [silver_memory_local.md](evidence/silver_memory_local.md) | PASS: "What about their contract value?" resolved to Acme Corp ($250,000); without history the same question returns `CANNOT_ANSWER` |
 | Works deployed | [response_turn1.json](evidence/response_turn1.json), [response_turn2.json](evidence/response_turn2.json), [silver_memory_lambda.md](evidence/silver_memory_lambda.md) | PASS: same Acme Corp result through `aws lambda invoke` with history passed from turn 1 |
-| Cost impact measured | [silver_memory_local.md](evidence/silver_memory_local.md) | Memory added 375 input tokens (+61.5%) for one replayed turn; on Lambda, turn 2 used 987 input tokens vs 767 for
+| Cost impact measured | [silver_memory_local.md](evidence/silver_memory_local.md) | Memory added 375 input tokens (+61.5%) for one replayed turn; on Lambda, turn 2 used 987 input tokens vs 767 for turn 1 |
+
+## Reflection
+
+Hardest question: Q6 (“How many consultants do we have, and what does our onboarding process require them to complete?”) tested the limits of my orchestrator the most.
+What went wrong: The router correctly sent it to both agents, but the SQL agent received the whole question, decided it couldn’t answer the onboarding part, and returned CANNOT_ANSWER, so the consultant count was lost.
+Type of failure: Not a validation or routing problem. It was a decomposition problem in how work was handed to each agent.
+Fix: I told each agent to answer only the part of the question it can handle.
+Second issue: Q7 (the delete request) was routed to “none,” so nothing ran, but that meant the router was acting as my safety layer instead of the validator.
+Fix: I changed the router to send all data-change requests to SQL so the validator is what blocks them.
+What it taught me: Multi-agent systems are more fragile than a single well-scoped agent, because every handoff between the router, the agents, and the synthesis step is a place where one component can make a wrong assumption about another, and those failures are often silent rather than obvious errors.

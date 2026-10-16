@@ -1,7 +1,0 @@
-{
-  "python.defaultInterpreterPath": "/home/du_356070-1790253990/bootcamp/.venv/bin/python",
-  "python.analysis.extraPaths": [
-    "/home/du_356070-1790253990/bootcamp/.venv/lib/python3.12/site-packages",
-    "/home/du_356070-1790253990/bootcamp/deployment"
-  ]
-}
