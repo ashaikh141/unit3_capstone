@@ -7,6 +7,6 @@ venv/
 __pycache__/
 *.pyc
 logs/
-*.zip*.swp
+*.zip
 .vscode/
 *.swp
