@@ -41,7 +41,9 @@ def classify_node(state):
         "sql -> only sql_agent is needed\n"
         "retrieval -> only retrieval_agent is needed\n"
         "both -> the question needs database records AND document content\n"
-        "none -> neither tool can answer it (outside knowledge, predictions, opinions, other companies)"
+        "none -> neither tool can answer it (outside knowledge, predictions, opinions, other companies)\n\n"
+        "Any request to delete, update, insert, drop, or otherwise change database records or tables "
+        "must be routed to sql, never none. The SQL validator is responsible for blocking unsafe statements."
     )
     user = history_block(state.get("history")) + f"New question: {state['question']}\nRoute:"
     raw = llm.call_claude("classification", system, user, max_tokens=5).lower()

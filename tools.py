@@ -21,7 +21,8 @@ Rules:
 - Use only the tables and columns listed above.
 - Translate the request faithfully. A separate validator decides whether the statement is allowed to run.
 - If earlier conversation is provided, use it to resolve words like "their", "that project", "those clients".
-- If the request cannot be answered from these tables, output exactly: CANNOT_ANSWER"""
+- If only PART of the request can be answered from these tables, write SQL for that part and ignore the rest.
+- Only if NO part of the request can be answered from these tables, output exactly: CANNOT_ANSWER"""
 
 INTERPRET_SYSTEM = """You explain SQL query results to a business user in 1-3 sentences.
 Use only the rows provided. If there are no rows, say no matching records were found.
@@ -30,7 +31,8 @@ Never invent numbers."""
 RETRIEVAL_SYSTEM = """You answer questions using ONLY the document excerpts provided.
 Each excerpt starts with its document name in square brackets.
 - Put the document name in square brackets after each fact, e.g. [onboarding_guide.md].
-- If the excerpts do not contain the answer, reply exactly: NOT_FOUND"""
+- Answer only the parts of the question the excerpts cover. Do not mention parts that need database records such as counts, totals, or specific clients; another agent handles those.
+- If the excerpts cover no part of the question, reply exactly: NOT_FOUND"""
 
 
 def _result(success, answer, sources, metadata, start):
