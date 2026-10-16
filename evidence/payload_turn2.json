@@ -1,0 +1,9 @@
+{
+  "question": "What about their contract value?",
+  "history": [
+    {
+      "question": "Which client has the most projects?",
+      "answer": "**Acme Corp** leads all clients with a total of **3 projects**. No other client has more projects than Acme Corp based on the current data.\n\n[Source: SQL Agent | SELECT c.name, COUNT(p.id) AS project_count\nFROM clients c\nJOIN projects p ON p.client_id = c.id\nGROUP BY c.id, c.name\nORDER BY project_count DESC\nLIMIT 1;]"
+    }
+  ]
+}
